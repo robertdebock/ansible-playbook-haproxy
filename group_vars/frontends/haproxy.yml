@@ -1,0 +1,23 @@
+---
+haproxy_frontends:
+  - name: http
+    address: "*"
+    port: 80
+    default_backend: backend
+  - name: https
+    address: "*"
+    port: 443
+    default_backend: backend
+    ssl: true
+    crts:
+      - /etc/pki/tls/my_key_and_crt.pkcs12
+
+haproxy_backends:
+  - name: backend
+    balance: roundrobin
+    servers: "{{ groups['backends'] }}"
+    port: 443
+    options:
+      - check
+      - ssl
+      - verify none

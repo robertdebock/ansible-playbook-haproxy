@@ -1,0 +1,9 @@
+---
+- robertdebock.bootstrap
+- robertdebock.buildtools
+- robertdebock.core_dependencies
+- robertdebock.epel
+- robertdebock.haproxy
+- robertdebock.hostname
+- robertdebock.httpd
+- robertdebock.python_pip
