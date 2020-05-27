@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
    end
 
   config.vm.provision "ansible" do |ansible|
-    # ansible.playbook = "dummy.yml"
+    ansible.playbook = "dummy.yml"
     ansible.groups = {
       "frontends" => ["frontend-01","frontend-02"],
       "backends" => ["backend-01", "backend-02"]
