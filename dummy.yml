@@ -1,6 +1,6 @@
 ---
 - name: do nothing because provisioning in Vagrant is sub-optimal
-- hosts: all
+  hosts: all
   gather_facts: no
 
   tasks: []
