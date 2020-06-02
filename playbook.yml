@@ -7,6 +7,10 @@
 
   roles:
     - role: robertdebock.bootstrap
+    - role: robertdebock.epel
+    - role: robertdebock.buildtools
+    - role: robertdebock.python_pip
+    - role: robertdebock.openssl
 
 - name: configure backend
   hosts: backends
@@ -14,9 +18,6 @@
   gather_facts: yes
 
   roles:
-    - role: robertdebock.epel
-    - role: robertdebock.buildtools
-    - role: robertdebock.python_pip
     - role: robertdebock.httpd
 
 - name: configure frontend
@@ -24,33 +25,6 @@
   become: yes
   gather_facts: yes
 
-  pre_tasks:
-    - name: create private key
-      openssl_privatekey:
-        path: /etc/pki/tls/private/my.key
-
-    - name: generate csr
-      openssl_csr:
-        path: /etc/pki/tls/misc/my.csr
-        privatekey_path: /etc/pki/tls/private/my.key
-        common_name: "{{ ansible_fqdn }}"
-        country_name: NL
-        email_address: "robert@meinit.nl"
-        organization_name: NONE
-        organizational_unit_name: NONE
-        state_or_province_name: Utrecht
-
-    - name: generate certificate
-      openssl_certificate:
-        path: /etc/pki/tls/certs/my.crt
-        privatekey_path: /etc/pki/tls/private/my.key
-        csr_path: /etc/pki/tls/misc/my.csr
-        provider: selfsigned
-
-    - name: combine key and certificate
-      shell: cat /etc/pki/tls/private/my.key /etc/pki/tls/certs/my.crt > /etc/pki/tls/my_key_and_crt.pkcs12
-      args:
-        creates: /etc/pki/tls/my_key_and_crt.pkcs12
 
   roles:
     - role: robertdebock.core_dependencies

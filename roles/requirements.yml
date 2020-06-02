@@ -6,4 +6,5 @@
 - robertdebock.haproxy
 - robertdebock.hostname
 - robertdebock.httpd
+- robertdebock.openssl
 - robertdebock.python_pip

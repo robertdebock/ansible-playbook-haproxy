@@ -10,7 +10,7 @@ haproxy_frontends:
     default_backend: backend
     ssl: true
     crts:
-      - /etc/pki/tls/my_key_and_crt.pkcs12
+      - /etc/pki/tls/private/apache-httpd.keycrt
 
 haproxy_backends:
   - name: backend
