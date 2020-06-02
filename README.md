@@ -5,12 +5,12 @@ A minimal playbook to provision multiple machines.
 ## Overview
 
 ```text
-+--- frontend-01 ---+   +--- frontend-02 ---+
-| - haproxy         |   | - haproxy         |
-+-------------------+   +-------------------+
-         |           \ /         |
-         |            X          |
-         V           / \         V
+            +--- frontend-01 ---+
+            | - haproxy         |
+            +-------------------+
+                     / \
+                    /   \
+                   V     V
 +--- backend-01 ----+   +--- backend-02 ----+
 | - httpd           |   | - httpd           |
 +-------------------+   +-------------------+
